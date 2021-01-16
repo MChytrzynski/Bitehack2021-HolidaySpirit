@@ -28,7 +28,7 @@ namespace HackBack
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSingleton<ILiteDbContext, LiteDbContext>();
+            services.AddSingleton<IDbContext, DbContext>();
             services.AddTransient<IDbService, DbService>();
         }
 

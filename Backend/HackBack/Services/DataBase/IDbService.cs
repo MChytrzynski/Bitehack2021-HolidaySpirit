@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using HackBack.Models.Issue;
+using System.Collections.Generic;
 
 namespace HackBack.Services.DataBase
 {
     public interface IDbService
     {
         bool Delete(int id);
-        IEnumerable<WeatherForecastDAO> FindAll();
-        WeatherForecastDAO FindOne(int id);
-        int Insert(WeatherForecastDAO forecast);
-        bool Update(WeatherForecastDAO forecast);
+        IEnumerable<IssueDAO> FindAll();
+        IssueDAO FindOne(int id);
+        int Insert(IssueDAO forecast);
+        bool Update(IssueDAO forecast);
     }
 }

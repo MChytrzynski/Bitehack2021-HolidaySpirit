@@ -2,7 +2,7 @@
 
 namespace HackBack.DataBase
 {
-    public interface ILiteDbContext
+    public interface IDbContext
     {
         public LiteDatabase database { get; }
     }

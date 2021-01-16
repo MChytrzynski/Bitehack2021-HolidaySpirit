@@ -1,4 +1,5 @@
 ﻿using HackBack.DataBase;
+using HackBack.Models.Issue;
 using LiteDB;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -16,7 +17,7 @@ namespace HackBack.Services.DataBase
         private readonly string _collectionName;
         ILogger<DbService> _logger;
 
-        public DbService(ILiteDbContext liteDbContext, IConfiguration configuration, ILogger<DbService> logger)
+        public DbService(IDbContext liteDbContext, IConfiguration configuration, ILogger<DbService> logger)
         {
             _db = liteDbContext.database;
             _configuration = configuration;
@@ -28,7 +29,7 @@ namespace HackBack.Services.DataBase
                 try
                 {
                     logger.LogInformation("DbService : Creating database instance.");
-                    _db.GetCollection<WeatherForecastDAO>(_collectionName);
+                    _db.GetCollection<IssueDAO>(_collectionName);
                 }
                 catch
                 {
@@ -37,34 +38,34 @@ namespace HackBack.Services.DataBase
             }
         }
 
-        public IEnumerable<WeatherForecastDAO> FindAll()
+        public IEnumerable<IssueDAO> FindAll()
         {
             _logger.LogInformation("DbService : FindAll()");
-            return _db.GetCollection<WeatherForecastDAO>(_collectionName).FindAll();
+            return _db.GetCollection<IssueDAO>(_collectionName).FindAll();
         }
 
-        public WeatherForecastDAO FindOne(int id)
+        public IssueDAO FindOne(int id)
         {
             _logger.LogInformation("DbService : FindOne()");
-            return _db.GetCollection<WeatherForecastDAO>(_collectionName).Find(x => x.Id == id).FirstOrDefault();
+            return _db.GetCollection<IssueDAO>(_collectionName).Find(x => x.Id == id).FirstOrDefault();
         }
 
-        public int Insert(WeatherForecastDAO forecast)
+        public int Insert(IssueDAO newIssue)
         {
             _logger.LogInformation("DbService : Insert()");
-            return _db.GetCollection<WeatherForecastDAO>(_collectionName).Insert(forecast);
+            return _db.GetCollection<IssueDAO>(_collectionName).Insert(newIssue);
         }
 
-        public bool Update(WeatherForecastDAO forecast)
+        public bool Update(IssueDAO issue)
         {
             _logger.LogInformation("DbService : Update()");
-            return _db.GetCollection<WeatherForecastDAO>(_collectionName).Update(forecast);
+            return _db.GetCollection<IssueDAO>(_collectionName).Update(issue);
         }
 
         public bool Delete(int id)
         {
             _logger.LogInformation("DbService : Delete()");
-            return _db.GetCollection<WeatherForecastDAO>(_collectionName).Delete(id);
+            return _db.GetCollection<IssueDAO>(_collectionName).Delete(id);
         }
     }
 }

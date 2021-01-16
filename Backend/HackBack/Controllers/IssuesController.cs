@@ -1,22 +1,20 @@
-﻿using HackBack.Models.WeatherForecast;
+﻿using HackBack.Models;
+using HackBack.Models.Issue;
 using HackBack.Services.DataBase;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace HackBack.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    [Route("api/issues")]
+    public class IssuesController : ControllerBase
     {
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<IssuesController> _logger;
         private readonly IDbService _forecastDbService;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, IDbService forecastDbService)
+        public IssuesController(ILogger<IssuesController> logger, IDbService forecastDbService)
         {
             _forecastDbService = forecastDbService;
             _logger = logger;
@@ -25,14 +23,14 @@ namespace HackBack.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            _logger.LogInformation("WeatherForecastController : Get()");
+            _logger.LogInformation("IssuesController : Get()");
             return new JsonResult(_forecastDbService.FindAll());
         }
 
         [HttpPost]
-        public IActionResult Insert(WeatherForecastDAO dto)
+        public IActionResult Insert(IssueDAO dto)
         {
-            _logger.LogInformation("WeatherForecastController : Insert()");
+            _logger.LogInformation("IssuesController : Insert()");
             var id = _forecastDbService.Insert(dto);
             if (id != default)
                 return new JsonResult(_forecastDbService.FindOne(id));
@@ -41,9 +39,9 @@ namespace HackBack.Controllers
         }
 
         [HttpPut]
-        public IActionResult Update(WeatherForecastDAO dto)
+        public IActionResult Update(IssueDAO dto)
         {
-            _logger.LogInformation("WeatherForecastController : Update()");
+            _logger.LogInformation("IssuesController : Update()");
             var result = _forecastDbService.Update(dto);
             if (result)
                 return NoContent();
@@ -54,7 +52,7 @@ namespace HackBack.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            _logger.LogInformation("WeatherForecastController : Delete()");
+            _logger.LogInformation("IssuesController : Delete()");
             var result = _forecastDbService.Delete(id);
             if (result)
                 return NoContent();

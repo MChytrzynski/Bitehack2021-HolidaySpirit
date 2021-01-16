@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace HackBack.DataBase
 {
-    public class LiteDbContext : ILiteDbContext
+    public class DbContext : IDbContext
     {
         public LiteDatabase database { get; }
         private readonly IConfiguration _configuration;
         private readonly string _databasePath;
         private const string E_DB_OPTIONS_PATH = "LiteDbOptions:DbLocation";
 
-        public LiteDbContext(IConfiguration configuration)
+        public DbContext(IConfiguration configuration)
         {
             _configuration = configuration;
             _databasePath = _configuration.GetValue<string>(E_DB_OPTIONS_PATH);
