@@ -1,1 +1,18 @@
-<p>problems-list-item works!</p>
+<mat-card (click)="problemClicked()" matRipple>
+    <mat-card-header >
+      <mat-card-title>{{problem.title}}</mat-card-title>
+      <mat-card-subtitle>{{problem.username}}</mat-card-subtitle>
+    </mat-card-header>
+    <div mat-card-image></div>
+    <mat-card-content >
+      <p>
+        {{problem.content}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <mat-chip-list>
+            <mat-chip color="accent" selected *ngFor="let tag of problem.tags" (click)="tagClicked(tag)">{{tag.name}}</mat-chip>
+        </mat-chip-list>
+    </mat-card-actions>
+  </mat-card>
+  

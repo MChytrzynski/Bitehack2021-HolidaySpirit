@@ -1,0 +1,29 @@
+.search-form-field {
+  display: flex; /* establish flex container */
+  flex-direction: column; /* make main axis vertical */
+  justify-content: center; /* center items vertically, in this case */
+  align-items: center; /* center items horizontally, in this case */
+}
+mat-form-field {
+  width: 60%;
+  margin: 2%, 2%, 2%, 0%;
+  text-align: center;
+  color: white;
+}
+.problemsContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: 6%;
+}
+.problemItem {
+  display: flex;
+  width: 22%;
+  margin: 10px 10px 10px 10px;
+}
+app-problems-list-item {
+  cursor: pointer;
+}
+.chips {
+  margin-bottom: 2%;
+}

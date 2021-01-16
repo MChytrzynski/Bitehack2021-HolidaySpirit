@@ -1,0 +1,11 @@
+html,
+body,
+app-root,
+.app-frame,
+router-outlet {
+  overflow: hidden;
+  margin: 0;
+  height: 100%;
+  box-sizing: border-box;
+  color: #e0e0e0;
+}
