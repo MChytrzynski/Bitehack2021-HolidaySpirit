@@ -1,9 +1,9 @@
-.bigContainer {
+.problemsContainer {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
-.CardContainer {
+.problemItem {
   display: flex;
   width: 22%;
   margin: 10px 10px 10px 10px;

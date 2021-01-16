@@ -2,7 +2,7 @@ html,
 body,
 app-root,
 .app-frame,
-router-outle {
+router-outlet {
   overflow: hidden;
   margin: 0;
   height: 100%;
