@@ -1,2 +1,10 @@
-.CardContainer {
+.mat-card-header {
+  background-color: #4b4b4b;
+  border-radius: 15px;
+}
+.mat-card-title {
+  margin-top: 10px;
+}
+.mat-card {
+  border-radius: 15px;
 }
