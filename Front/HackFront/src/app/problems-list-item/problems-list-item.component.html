@@ -1,1 +1,19 @@
-<p>problems-list-item works!</p>
+<mat-card>
+    <mat-card-header>
+      <div mat-card-avatar></div>
+      <mat-card-title>{{problem.title}}</mat-card-title>
+      <mat-card-subtitle>{{problem.username}}</mat-card-subtitle>
+    </mat-card-header>
+    <div mat-card-image></div>
+    <mat-card-content>
+      <p>
+        {{problem.content}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <mat-chip-list  *ngFor="let tags of problem.tags">
+            <mat-chip color="accent" selected>{{tags.name}}</mat-chip>
+        </mat-chip-list>
+    </mat-card-actions>
+  </mat-card>
+  
