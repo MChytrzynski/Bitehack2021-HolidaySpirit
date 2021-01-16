@@ -18,9 +18,9 @@
       }
     },
     "HackBack": {
-      "commandName": "Project",
+      "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
+      "launchUrl": "api/issues",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
