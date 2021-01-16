@@ -1,10 +1,10 @@
-<mat-card>
-    <mat-card-header>
+<mat-card (click)="problemClicked()">
+    <mat-card-header >
       <mat-card-title>{{problem.title}}</mat-card-title>
       <mat-card-subtitle>{{problem.username}}</mat-card-subtitle>
     </mat-card-header>
     <div mat-card-image></div>
-    <mat-card-content>
+    <mat-card-content >
       <p>
         {{problem.content}}
       </p>

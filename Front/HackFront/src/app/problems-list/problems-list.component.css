@@ -25,6 +25,10 @@ mat-form-field{
   width: 22%;
   margin: 10px 10px 10px 10px;
 }
+app-problems-list-item{
+    cursor: pointer;
+
+}
 .chips{
     margin-bottom: 2%;
 }

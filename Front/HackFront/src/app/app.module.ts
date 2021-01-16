@@ -21,7 +21,8 @@ import { FormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
   { path: '', component: AuthenticationComponent },
-  { path: 'problems', component: ProblemsListComponent }
+  { path: 'problems', component: ProblemsListComponent },
+  { path: 'problem', component: ProblemComponent }
 ];
 
 @NgModule({

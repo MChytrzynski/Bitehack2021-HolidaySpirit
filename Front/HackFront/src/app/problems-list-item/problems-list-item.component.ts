@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Problem } from '../interfaces/problem';
 import { Tag } from '../interfaces/tag';
 
@@ -12,12 +13,14 @@ export class ProblemsListItemComponent implements OnInit {
   @Input() problem: Problem;
   @Output() tagClickedEvent = new EventEmitter<Tag>();
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
   tagClicked(tag:Tag){
     this.tagClickedEvent.emit(tag);
   }
+  problemClicked(){
+    this.router.navigate(['/problem', { id: this.problem.id }]);  }
 
 }

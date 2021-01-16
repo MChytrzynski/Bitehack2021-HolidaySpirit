@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Problem } from '../interfaces/problem';
 
 @Component({
   selector: 'app-problem',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProblemComponent implements OnInit {
 
-  constructor() { }
+  problem:Problem;
+  constructor(private route:ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(x=>console.log(x.id))
   }
 
 }
