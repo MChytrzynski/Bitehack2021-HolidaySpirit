@@ -2,8 +2,9 @@ using System;
 
 namespace HackBack
 {
-    public class WeatherForecast
+    public class WeatherForecastDAO
     {
+        public int Id { get; set; }
         public DateTime Date { get; set; }
 
         public int TemperatureC { get; set; }
