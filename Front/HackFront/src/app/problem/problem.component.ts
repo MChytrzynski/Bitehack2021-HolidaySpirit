@@ -11,6 +11,7 @@ export class ProblemComponent implements OnInit {
 
   problem:Problem;
   constructor(private route:ActivatedRoute) { }
+  
 
   ngOnInit(): void {
     this.route.params.subscribe(x=>console.log(x.id))

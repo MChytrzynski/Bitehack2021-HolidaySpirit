@@ -1,6 +1,4 @@
     <span class="search-form-field">
-
-    
     <mat-form-field >
     <mat-label>Wyszukaj problem</mat-label>
     <input matInput type="text" [(ngModel)]="searchValue" (ngModelChange)="searchChanged()">
@@ -15,7 +13,7 @@
 
 
 <div class ="problemsContainer">
-<div *ngFor="let problem1 of filteredProblems" class="problemItem">
+<div *ngFor="let problem1 of filteredProblems" class="problemItem" >
 
     <app-problems-list-item (tagClickedEvent)="tagClicked($event)" [problem]="problem1"></app-problems-list-item>
 

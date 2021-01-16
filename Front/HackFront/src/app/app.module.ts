@@ -10,6 +10,7 @@ import { ProblemsListComponent } from './problems-list/problems-list.component';
 import { ProblemsListItemComponent } from './problems-list-item/problems-list-item.component';
 import { ProblemComponent } from './problem/problem.component';
 import { RouterModule, Routes } from '@angular/router';
+import {MatRippleModule} from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatChipsModule} from '@angular/material/chips';
 import { MatCommonModule } from '@angular/material/core';
@@ -48,7 +49,8 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    MatRippleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
