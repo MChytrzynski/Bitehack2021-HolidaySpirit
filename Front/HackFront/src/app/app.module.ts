@@ -8,6 +8,12 @@ import { RegisterComponent } from './register/register.component';
 import { ProblemsListComponent } from './problems-list/problems-list.component';
 import { ProblemsListItemComponent } from './problems-list-item/problems-list-item.component';
 import { ProblemComponent } from './problem/problem.component';
+import { RouterModule, Routes } from '@angular/router';
+
+const appRoutes: Routes = [
+  { path: '', component: AuthenticationComponent },
+  { path: 'problems', component: ProblemsListComponent }
+];
 
 @NgModule({
   declarations: [
@@ -20,7 +26,8 @@ import { ProblemComponent } from './problem/problem.component';
     ProblemComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
