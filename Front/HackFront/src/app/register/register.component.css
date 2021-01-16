@@ -5,6 +5,7 @@
     justify-content: center; /* center items vertically, in this case */
     align-items: center;     /* center items horizontally, in this case */
     height: 100%;
+    color:white;
 
 }
 mat-form-field{
