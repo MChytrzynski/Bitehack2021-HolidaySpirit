@@ -9,7 +9,7 @@
 }
 mat-form-field{
     width: 60%;
-    margin: 2%;
+    margin: 2%,2%,2%,0%;
     text-align: center;
     color: white;
 }
@@ -24,4 +24,7 @@ mat-form-field{
   display: flex;
   width: 22%;
   margin: 10px 10px 10px 10px;
+}
+.chips{
+    margin-bottom: 2%;
 }

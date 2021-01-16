@@ -50,7 +50,10 @@ export class ProblemsListComponent implements OnInit {
   searchChanged(){
     this.filteredProblems=this.problems.filter(x=>!this.searchValue||x.title.toLowerCase().includes(this.searchValue.toLowerCase())||x.content.toLowerCase().includes(this.searchValue.toLowerCase())||x.tags.some(x=>x.name.toLowerCase().includes(this.searchValue.toLowerCase())));
   }
-
+  tagClicked(tag:Tag){
+    this.searchValue=tag.name;
+    this.searchChanged();
+  }
 
 
 }

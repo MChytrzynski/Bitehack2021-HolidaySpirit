@@ -11,7 +11,7 @@
     </mat-card-content>
     <mat-card-actions>
         <mat-chip-list>
-            <mat-chip color="accent" selected *ngFor="let tags of problem.tags">{{tags.name}}</mat-chip>
+            <mat-chip color="accent" selected *ngFor="let tag of problem.tags" (click)="tagClicked(tag)">{{tag.name}}</mat-chip>
         </mat-chip-list>
     </mat-card-actions>
   </mat-card>

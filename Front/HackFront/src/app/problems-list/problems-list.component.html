@@ -8,13 +8,16 @@
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
+  <mat-chip-list class="chips">
+    <mat-chip color="accent" selected *ngFor="let tag of tags" (click)="tagClicked(tag)">{{tag.name}}</mat-chip>
+</mat-chip-list>
 </span>
 
 
 <div class ="problemsContainer">
 <div *ngFor="let problem1 of filteredProblems" class="problemItem">
 
-    <app-problems-list-item [problem]="problem1"></app-problems-list-item>
+    <app-problems-list-item (tagClickedEvent)="tagClicked($event)" [problem]="problem1"></app-problems-list-item>
 
 </div>
 </div>
