@@ -9,37 +9,16 @@ import { ProblemsServiceService } from '../problems-service.service';
   styleUrls: ['./problems-list.component.css']
 })
 export class ProblemsListComponent implements OnInit {
-  solution: Solution = {  
-    content: 'testsolution',
-    attachements:[''],
-    urls: ['test']}
-   tags: Tag[] = [
-    {  name: 'C#' },
-    {  name: 'Java' },
-    {  name: 'C++' },
-    {  name: 'PHP' },
-    {  name: 'Javascript' },
-    {  name: 'AngularJS' },
-    {  name: 'ReactJS' },
-    {  name: 'API' },
-    {  name: 'SQL' },
-  ]
-  tags1: Tag[] = [
-    {  name: 'C#' },
-    {  name: 'Java' },
-    {  name: 'C++' },
-    {  name: 'PHP' },
-    {  name: 'Javascript' },
-  ]
-   problems: Problem[] = [
- 
-  ];
+
+  tags:Tag[]=[];
+   problems: Problem[] = [];
   filteredProblems:Problem[]=[];
   searchValue:string='';
   constructor(public problemsService:ProblemsServiceService) { }
   
   ngOnInit(): void {
     this.problemsService.getProblems().subscribe(x=>{this.problems=x; this.searchChanged();});
+    this.problemsService.getTags().subscribe(x=>{this.tags=x;console.log(x)});
   }
   searchChanged(){
     this.filteredProblems=this.problems.filter(x=>!this.searchValue||x.title.toLowerCase().includes(this.searchValue.toLowerCase())||x.content.toLowerCase().includes(this.searchValue.toLowerCase())||x.tags.some(x=>x.name.toLowerCase().includes(this.searchValue.toLowerCase())));
