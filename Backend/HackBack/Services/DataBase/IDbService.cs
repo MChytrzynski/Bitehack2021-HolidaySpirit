@@ -7,8 +7,9 @@ namespace HackBack.Services.DataBase
     {
         bool Delete(int id);
         IEnumerable<IssueDAO> FindAll();
+        IEnumerable<string> FindAllTags();
         IssueDAO FindOne(int id);
-        int Insert(IssueDAO forecast);
-        bool Update(IssueDAO forecast);
+        int Insert(IssueDAO newIssue);
+        bool Update(IssueDAO issue);
     }
 }
