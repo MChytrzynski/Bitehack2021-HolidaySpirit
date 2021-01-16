@@ -19,6 +19,9 @@ import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 const appRoutes: Routes = [
   { path: '', component: AuthenticationComponent },
@@ -50,7 +53,8 @@ const appRoutes: Routes = [
     MatInputModule,
     MatIconModule,
     FormsModule,
-    MatRippleModule
+    MatRippleModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

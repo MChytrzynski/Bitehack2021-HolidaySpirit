@@ -1,4 +1,5 @@
-﻿using HackBack.Models.Issue;
+﻿using HackBack.Models;
+using HackBack.Models.Issue;
 using System.Collections.Generic;
 
 namespace HackBack.Services.DataBase
@@ -7,8 +8,9 @@ namespace HackBack.Services.DataBase
     {
         bool Delete(int id);
         IEnumerable<IssueDAO> FindAll();
+        IEnumerable<Tag> FindAllTags();
         IssueDAO FindOne(int id);
-        int Insert(IssueDAO forecast);
-        bool Update(IssueDAO forecast);
+        int Insert(IssueDAO newIssue);
+        bool Update(IssueDAO issue);
     }
 }

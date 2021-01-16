@@ -6,7 +6,7 @@ export interface Problem {
     title: string;
     content: string;
     tags: Tag[];
-    solutions: Solution;
+    solution: Solution;
     isPrivate: boolean;
-    Date: string;
+    date: string;
 }

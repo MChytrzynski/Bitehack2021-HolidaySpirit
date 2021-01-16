@@ -12,4 +12,8 @@ export class ProblemsServiceService {
   constructor(public httpClient:HttpClient) { }
 
 
+  getProblems():Observable<Problem[]>{
+    return this.httpClient.get<Problem[]>(environment.baseURL+'/api/issues')
+  }
+
 }

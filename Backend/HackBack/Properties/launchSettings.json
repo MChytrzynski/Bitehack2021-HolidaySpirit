@@ -4,7 +4,7 @@
     "anonymousAuthentication": true,
     "iisExpress": {
       "applicationUrl": "http://localhost:57569",
-      "sslPort": 44309
+      "sslPort": 0
     }
   },
   "$schema": "http://json.schemastore.org/launchsettings.json",
@@ -18,9 +18,9 @@
       }
     },
     "HackBack": {
-      "commandName": "Project",
+      "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
+      "launchUrl": "api/issues",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
