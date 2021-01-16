@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ProblemsListComponent } from '../problems-list/problems-list.component';
 
 @Component({
   selector: 'app-authentication',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthenticationComponent implements OnInit {
 
-  constructor() { }
+  loginMode:boolean=true;
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
-
+  toggleLogin(){
+    this.loginMode=!this.loginMode;
+  }
+  login(){
+    this.router.navigateByUrl('/problems') 
+   }
 }

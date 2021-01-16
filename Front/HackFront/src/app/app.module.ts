@@ -12,6 +12,11 @@ import { ProblemComponent } from './problem/problem.component';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatChipsModule} from '@angular/material/chips';
+import { MatCommonModule } from '@angular/material/core';
+import {MatButtonModule} from '@angular/material/button';
+import {MatFormFieldModule} from '@angular/material/form-field'
+import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
 
 const appRoutes: Routes = [
   { path: '', component: AuthenticationComponent },
@@ -35,7 +40,12 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MatSliderModule,
     MatCardModule,
-    MatChipsModule
+    MatChipsModule,
+    MatCommonModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

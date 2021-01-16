@@ -1,1 +1,16 @@
-<p>authentication works!</p>
+<div class="form-container">
+    <h1 *ngIf="!loginMode">REJESTRACJA</h1>
+    <h1 *ngIf="loginMode">LOGOWANIE</h1>
+
+    <app-login *ngIf="loginMode"></app-login>
+<app-register *ngIf="!loginMode"></app-register>
+<div *ngIf="!loginMode" class="register-buttons">
+    <button mat-raised-button color="primary" (click)="toggleLogin()">Przejdź do logowania</button>
+    <button mat-raised-button (click)="login()" color="accent">Rejestruj</button>
+</div>
+<div *ngIf="loginMode" class="login-buttons">
+    <button mat-raised-button color="primary" (click)="toggleLogin()"> Przejdź do rejestracji </button>
+    <button class="login-button" (click)="login()" mat-raised-button color="accent">Zaloguj</button>
+</div>
+
+</div>
