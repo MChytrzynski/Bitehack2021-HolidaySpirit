@@ -11,9 +11,10 @@
 </span>
 
 
+<div class ="problemsContainer">
+<div *ngFor="let problem1 of filteredProblems" class="problemItem">
 
-<div *ngFor="let problem1 of filteredProblems">
-<div class="CardContainer" >
     <app-problems-list-item [problem]="problem1"></app-problems-list-item>
+
 </div>
 </div>

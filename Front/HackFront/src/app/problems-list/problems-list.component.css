@@ -13,3 +13,15 @@ mat-form-field{
     text-align: center;
     color: white;
 }
+.problemsContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: 6%;
+  
+}
+.problemItem {
+  display: flex;
+  width: 22%;
+  margin: 10px 10px 10px 10px;
+}
