@@ -1,5 +1,5 @@
 export interface Solution {
     content: string;
-    //attachement: ImageBitmap[];
-    URLs: string;
+    attachements: string[];
+    urls: string[];
 }
