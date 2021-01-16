@@ -1,5 +1,19 @@
-<div *ngFor="let problem1 of problems">
-<div class="CardContainer">
+    <span class="search-form-field">
+
+    
+    <mat-form-field >
+    <mat-label>Wyszukaj problem</mat-label>
+    <input matInput type="text" [(ngModel)]="searchValue" (ngModelChange)="searchChanged()">
+    <button mat-button *ngIf="searchValue" matSuffix mat-icon-button aria-label="Clear" (click)="searchValue=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</span>
+
+
+
+<div *ngFor="let problem1 of filteredProblems">
+<div class="CardContainer" >
     <app-problems-list-item [problem]="problem1"></app-problems-list-item>
 </div>
 </div>

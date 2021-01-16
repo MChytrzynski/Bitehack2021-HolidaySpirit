@@ -1,0 +1,15 @@
+.problems-container{
+    color: white;
+}
+.search-form-field {
+    display: flex;           /* establish flex container */
+    flex-direction: column;  /* make main axis vertical */
+    justify-content: center; /* center items vertically, in this case */
+    align-items: center;     /* center items horizontally, in this case */
+}
+mat-form-field{
+    width: 60%;
+    margin: 2%;
+    text-align: center;
+    color: white;
+}
