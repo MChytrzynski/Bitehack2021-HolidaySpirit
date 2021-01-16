@@ -1,0 +1,10 @@
+.bigContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.CardContainer {
+  display: flex;
+  width: 22%;
+  margin: 10px 10px 10px 10px;
+}
