@@ -44,15 +44,19 @@ namespace HackBack.Services.DataBase
             _logger.LogInformation("Log: DbService : FindAll()");
             return _db.GetCollection<IssueDAO>(_collectionName).FindAll();
         }
-        public IEnumerable<string> FindAllTags()
+        public IEnumerable<Tag> FindAllTags()
         {
             _logger.LogInformation("Log: DbService : FindAllTags()");
-            HashSet<string> tags = new HashSet<string>();
+            HashSet<string> tagsNames = new HashSet<string>();
+            List<Tag> tags = new List<Tag>();
             foreach (var issueTags in _db.GetCollection<IssueDAO>(_collectionName).FindAll())
             {
                 foreach (var tag in issueTags.Tags)
                 {
-                    tags.Add(tag.Name);
+                    if (tagsNames.Add(tag.Name))
+                    {
+                        tags.Add(tag);
+                    }
                 }
             }
             return tags;
