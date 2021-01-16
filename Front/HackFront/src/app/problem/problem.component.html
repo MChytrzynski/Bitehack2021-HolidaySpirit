@@ -4,12 +4,48 @@
       <mat-card-title>ddupa</mat-card-title>
       <mat-card-subtitle>ttest</mat-card-subtitle>
     </mat-card-header>
-    <mat-card-content>
+    <div class="issueContent">
+        <h1>Issue</h1>
       <p>
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
       </p>
-    </mat-card-content>
-    <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+      <h1>Code</h1>
+      <h1>Attachements</h1>
+      <div class="image-row">
+        <div class="image-column" >
+            <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" (click)="openModal();currentSlide()" class="hover-shadow cursor">
+        </div>
+    </div>
+      <div id="imgModal" class="slide-modal">
+        <span class="close cursor" (click)="closeModal()">&times;</span>
+        <div class="slide-modal-content">
+            <div class="img-slides">
+                <img src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+            </div>
+            </div>
+    </div>
+    </div>
+    <div class="solutionContent">
+        <h1>Solution</h1>
+        <p>
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+        </p>
+        <h1>Code</h1>
+      <h1>Attachements</h1>
+        <div class="image-row">
+            <div class="image-column" >
+                <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" (click)="openModal();currentSlide()" class="hover-shadow cursor">
+            </div>
+        </div>
+          <div id="imgModal" class="slide-modal">
+            <span class="close cursor" (click)="closeModal()">&times;</span>
+            <div class="slide-modal-content">
+                <div class="img-slides">
+                    <img src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+                </div>
+                </div>
+        </div>
+      </div>
     <mat-card-actions>
         <mat-chip-list>
             <mat-chip color="primary" selected>Edytuj</mat-chip>
