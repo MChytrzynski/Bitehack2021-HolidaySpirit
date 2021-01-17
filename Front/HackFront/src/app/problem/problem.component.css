@@ -2,8 +2,10 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-left: 22%;
-  width: 55%;
+  margin-left: 15%;
+  margin-top: 1%;
+  margin-bottom: 2%;
+  width: 70%;
 }
 .mat-card-header {
   background-color: #4b4b4b;
@@ -13,12 +15,12 @@
   margin-top: 10px;
 }
 .issueContent {
-  background-color: #a6a6a6;
+  background-color:#4d001971;
   border-radius: 15px;
-  color: black;
+  color: rgb(231, 231, 231);
 }
 .solutionContent {
-  background-color: #1a1a1a;
+  background-color: #1e7a69c4 ;
   border-radius: 15px;
 }
 p {
