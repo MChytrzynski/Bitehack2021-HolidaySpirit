@@ -194,8 +194,8 @@ function getWebViewContent() {
       
     });
       
+      const vscode = acquireVsCodeApi();
       function sendMes() {
-            const vscode = acquireVsCodeApi();
             vscode.postMessage({
               title: document.getElementById("title").value,
               content: document.getElementById("content").value,
