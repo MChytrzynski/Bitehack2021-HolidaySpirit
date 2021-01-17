@@ -1,16 +1,16 @@
 <div class="problemsContainer">
-<mat-card>
+<mat-card >
     <mat-card-header>
-      <mat-card-title>{{problem.title}}</mat-card-title>
-      <mat-card-subtitle>{{problem.username}} {{problem.date}}</mat-card-subtitle>
+      <mat-card-title *ngIf="problem">{{problem.title}}</mat-card-title>
+      <mat-card-subtitle *ngIf="problem">{{problem.username}} {{problem.date}}</mat-card-subtitle>
     </mat-card-header>
     <div class="issueContent">
         <h1>Issue</h1>
-      <p>{{problem.content}}</p>
+      <p *ngIf="problem">{{problem.content}}</p>
     </div>
     <div class="solutionContent">
         <h1>Solution</h1>
-        <p>{{problem.solution.content}}</p>
+        <p *ngIf="problem">{{problem.solution.content}}</p>
         <h1>Code</h1>
         <div
         class="app-ace-editor"
@@ -21,7 +21,7 @@
     <mat-card-actions>
         <mat-chip-list>
             <mat-chip color="primary" selected>Edytuj</mat-chip>
-            <mat-chip color="primary" selected>Usuń</mat-chip>
+            <mat-chip color="primary" selected (click)="deleteClick()">Usuń</mat-chip>
         </mat-chip-list>
     </mat-card-actions>
   </mat-card>

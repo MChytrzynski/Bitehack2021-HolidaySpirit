@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Problem } from '../interfaces/problem';
 import { ProblemsServiceService } from '../problems-service.service';
 import * as ace from "ace-builds";
@@ -15,7 +15,7 @@ export class ProblemComponent implements OnInit {
   @ViewChild("editor") private editor: ElementRef<HTMLElement>;
 
   problem:Problem;
-  constructor(private route:ActivatedRoute,private problemService:ProblemsServiceService) { }
+  constructor(private route:ActivatedRoute,private problemService:ProblemsServiceService,private router:Router) { }
   ngAfterViewInit(): void {
     ace.config.set("fontSize", "14px");
     ace.config.set('basePath', 'https://unpkg.com/ace-builds@1.4.12/src-noconflict');
@@ -32,6 +32,10 @@ export class ProblemComponent implements OnInit {
     const aceEditor = ace.edit(this.editor.nativeElement);
     aceEditor.session.setValue(problem.solution.code);
 
+  }
+  deleteClick(){
+    console.log('aaa');
+    this.problemService.deleteProblem(this.problem.id).subscribe(x=>this.router.navigateByUrl('/problems'));
   }
 
 }
