@@ -88,9 +88,9 @@ namespace HackBack.Controllers
                         System.IO.File.ReadAllBytes("SampleData/sampleImg.png"),
                         System.IO.File.ReadAllBytes("SampleData/sampleImg.png")
                     },
-                    new System.Collections.Generic.List<string> { "https://www.bitehack.best.krakow.pl/", "https://www.pk.edu.pl/" },
-                    new System.Collections.Generic.List<string> { System.IO.File.ReadAllText("SampleData/sampleCode.js") , System.IO.File.ReadAllText("SampleData/sampleCode.js") }.ToArray()
-                ),
+                    "https://www.bitehack.best.krakow.pl/",
+                    System.IO.File.ReadAllText("SampleData/sampleCode.js")
+                    ),
                 false, System.DateTime.Now));
         }
     }
