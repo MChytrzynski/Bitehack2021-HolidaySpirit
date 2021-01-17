@@ -12,11 +12,11 @@ namespace HackBack.Controllers
     public class IssuesController : ControllerBase
     {
         private readonly ILogger<IssuesController> _logger;
-        private readonly IDbService _forecastDbService;
+        private readonly IDbService _dbService;
 
         public IssuesController(ILogger<IssuesController> logger, IDbService forecastDbService)
         {
-            _forecastDbService = forecastDbService;
+            _dbService = forecastDbService;
             _logger = logger;
         }
 
@@ -24,14 +24,14 @@ namespace HackBack.Controllers
         public IActionResult Get()
         {
             _logger.LogInformation("Log: IssuesController : Get()");
-            return new JsonResult(_forecastDbService.FindAll());
+            return new JsonResult(_dbService.FindAll());
         }
 
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
             _logger.LogInformation("Log: IssuesController : GetById()");
-            return new JsonResult(_forecastDbService.FindOne(id));
+            return new JsonResult(_dbService.FindOne(id));
         }
 
         [HttpGet]
@@ -39,16 +39,16 @@ namespace HackBack.Controllers
         public IActionResult GetTags()
         {
             _logger.LogInformation("Log: IssuesController : GetTags()");
-            return new JsonResult(_forecastDbService.FindAllTags());
+            return new JsonResult(_dbService.FindAllTags());
         }
 
         [HttpPost]
         public IActionResult Insert(IssueDAO dto)
         {
             _logger.LogInformation("Log: IssuesController : Insert()");
-            var id = _forecastDbService.Insert(dto);
+            var id = _dbService.Insert(dto);
             if (id != default)
-                return new JsonResult(_forecastDbService.FindOne(id));
+                return new JsonResult(_dbService.FindOne(id));
             else
                 return BadRequest();
         }
@@ -57,7 +57,7 @@ namespace HackBack.Controllers
         public IActionResult Update(IssueDAO dto)
         {
             _logger.LogInformation("Log: IssuesController : Update()");
-            var result = _forecastDbService.Update(dto);
+            var result = _dbService.Update(dto);
             if (result)
                 return NoContent();
             else
@@ -68,7 +68,7 @@ namespace HackBack.Controllers
         public IActionResult Delete(int id)
         {
             _logger.LogInformation("Log: IssuesController : Delete()");
-            var result = _forecastDbService.Delete(id);
+            var result = _dbService.Delete(id);
             if (result)
                 return NoContent();
             else
