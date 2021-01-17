@@ -20,13 +20,19 @@ import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import{MatSelectModule} from '@angular/material/select';
+import{MatToolbarModule} from '@angular/material/toolbar';
+
+import { NewProblemComponent } from './new-problem/new-problem.component'
+
 
 
 
 const appRoutes: Routes = [
   { path: '', component: AuthenticationComponent },
   { path: 'problems', component: ProblemsListComponent },
-  { path: 'problem', component: ProblemComponent }
+  { path: 'problem', component: ProblemComponent },
+  {path:'newproblem',component:NewProblemComponent}
 ];
 
 @NgModule({
@@ -38,6 +44,7 @@ const appRoutes: Routes = [
     ProblemsListComponent,
     ProblemsListItemComponent,
     ProblemComponent,
+    NewProblemComponent,
 
   ],
   imports: [
@@ -54,7 +61,9 @@ const appRoutes: Routes = [
     MatIconModule,
     FormsModule,
     MatRippleModule,
-    HttpClientModule
+    HttpClientModule,
+    MatToolbarModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
