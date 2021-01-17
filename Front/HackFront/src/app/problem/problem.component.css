@@ -118,4 +118,5 @@ img.hover-shadow {
 .app-ace-editor {
   border: 2px solid #1a551d;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  margin-bottom: 5%;
 }
