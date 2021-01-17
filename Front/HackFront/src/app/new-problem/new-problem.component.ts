@@ -13,14 +13,17 @@ export class NewProblemComponent implements OnInit {
   @ViewChild("editor") private editor: ElementRef<HTMLElement>;
 
   constructor(private problemsService:ProblemsServiceService) { }
-  problemModel:Problem={solution:{}} as any
+  problemModel:Problem={solution:{},tags:[]} as any
   tags:Tag[]=[];
+  selectedTags:string[]=[];
+  
   ngOnInit(): void {
     this.problemsService.getTags().subscribe(x=>this.tags=x);
   }
   submit(){
     const aceEditor = ace.edit(this.editor.nativeElement);
     this.problemModel.solution.code=aceEditor.getValue();
+    this.selectedTags.forEach(x=>this.problemModel.tags.push({name:x}));
     this.problemsService.addProblem(this.problemModel).subscribe(x=>console.log(x));
   }
   ngAfterViewInit(): void {
