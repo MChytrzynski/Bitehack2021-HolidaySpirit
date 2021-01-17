@@ -42,19 +42,11 @@ function activate(context) {
     }
   );
 
-  /*const filePath = vscode.Uri.file(
-    path.join(context.extensionPath, "html", "addItem.html")
-  );/panel.webview.html = fs.readFileSync(filePath.fsPath, "utf8");*/
 
   panel.webview.html = getWebViewContent();
 
   panel.webview.onDidReceiveMessage((message) => {
-    /* console.log("testUser");
-          console.log(message.title);
-          console.log(message.content);
-          console.log(message.tags);
-          console.log(message.code);
-          console.log(message.url);*/
+    
     postIssue(
       "testUser",
       message.title,
@@ -73,12 +65,7 @@ function activate(context) {
   let undispos = vscode.commands.registerCommand(
     "holiday-spirit.startWatch",
     function () {
-      /*fs.copy(watchPath, tempPath, (err) => {
-        if (err) return console.error(err);
-        console.log("success!");
-	  });*/
-
-      fs.readdir(watchPath, function (err, files) {
+        fs.readdir(watchPath, function (err, files) {
         if (err) {
           return console.log("Unable to scan directory: " + err);
         }
@@ -123,10 +110,7 @@ function activate(context) {
         return;
       }
 
-      // Send a message to our webview.
-      // You can send any JSON serializable data.
-      console.log("xx");
-      //panel.webview.postMessage({ command: 'refactor' });
+      
     })
   );
 
@@ -342,8 +326,7 @@ async function postIssue(user, title, content, tags, code, url) {
     .then((result) => console.log(""))
     .catch((error) => console.log("error", error));
 
-  // const responseJSON = await response.json(); //extract JSON from the http response
-  // console.log(responseJSON);
+
 }
 
 exports.activate = activate;
