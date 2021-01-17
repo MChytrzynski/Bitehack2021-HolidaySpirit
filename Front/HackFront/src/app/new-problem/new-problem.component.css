@@ -1,0 +1,21 @@
+.new-problem-container{
+    margin-top: 5%;
+    display: flex;           /* establish flex container */
+    flex-direction: column;  /* make main axis vertical */
+    justify-content: center; /* center items vertically, in this case */
+    align-items: center;     /* center items horizontally, in this case */
+    height: 100%;
+    color:white;
+     
+}
+mat-form-field {
+    width: 60%;
+    margin: 2%, 2%, 2%, 0%;
+    color: white;
+  }
+  h1{
+    color: white;
+}
+.app-ace-editor {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  }

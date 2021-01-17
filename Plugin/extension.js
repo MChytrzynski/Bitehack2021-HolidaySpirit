@@ -4,6 +4,8 @@ const vscode = require("vscode");
 const path = require("path");
 const fs = require("fs-extra");
 const Diff = require("diff");
+const { Console } = require("console");
+const fetch = require("node-fetch");
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 
@@ -45,6 +47,8 @@ function activate(context) {
   );/panel.webview.html = fs.readFileSync(filePath.fsPath, "utf8");*/
 
   panel.webview.html = getWebViewContent();
+
+  postIssue();
 
   const watchPath = vscode.workspace.workspaceFolders[0].uri.fsPath;
 
@@ -143,18 +147,70 @@ function getWebViewContent() {
 	<body>
 		<h1>Holiday Spirit Issue Tracker</h1>
 		<p id="tester">ss</p>
+    
+    <form action="/action_page.php">
+      <label for="title">Titl:</label><br>
+      <input type="text" id="title" name="title" value="TestTitle"><br>
+      <label for="content">Content:</label><br>
+      <input type="text" id="content" name="content" value="TestContent"><br><br>
+      <label for="content">Tags:</label><br>
+      <input type="text" id="tags" name="tags" value="tag1, tag2"><br><br>
+      <label for="code">Code:</label><br>
+      <input type="text" id="code" name="code" value=""><br><br>
+      <label for="url">Url:</label><br>
+      <input type="text" id="url" name="url" value="TestUrl"><br><br>
+      <input type="submit" value="Submit">
+    </form> 
 
-		<script>
-		const textField = document.getElementById("tester");
+    <script>
+		const inputField = document.getElementById("code");
 		window.addEventListener('message', (event) => {
 		  const message = event.data;
 		  
-		  textField.innerHTML = JSON.stringify(message);
+		  inputField.value = JSON.stringify(message);
 		});
-	  </script>
+    </script>
 
 	</body>
 	</html>`;
+}
+
+// async function postIssue() {
+//   console.log('postIssue():');
+//   const requestBody = ('{"username":"TestUser","title":"TestTitle","content":"TestContent","tags":[{"name":"TestTagName1"},{"name":"TestTagName2"}],"solution":{"content":"TestSolutionContent","attachements":["iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAAUSURBVChTY/i/7iQeNCqNBa07CQAfkfYZ8P5OvAAAAABJRU5ErkJggg==","iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAAUSURBVChTY/i/7iQeNCqNBa07CQAfkfYZ8P5OvAAAAABJRU5ErkJggg=="],"urls":["https://www.bitehack.best.krakow.pl/","https://www.pk.edu.pl/"],"code":["const slides = document.getElementsByClassName(\u0022img-slides\u0022) as HTMLCollectionOf \u003CHTMLElement\u003E;\r\nconst dots = document.getElementsByClassName(\u0022images\u0022) as HTMLCollectionOf \u003CHTMLElement\u003E;\r\nslides[0].style.display = \u0022blsad\u0022;","const slides = document.getElementsByClassName(\u0022img-slides\u0022) as HTMLCollectionOf \u003CHTMLElement\u003E;\r\nconst dots = document.getElementsByClassName(\u0022images\u0022) as HTMLCollectionOf \u003CHTMLElement\u003E;\r\nslides[0].style.display = \u0022blsad\u0022;"]},"isPrivate":false,"date":"2021-01-17T03:10:04.0832577+01:00"}');
+//   const response = await fetch('http://localhost:57569/api/issues', {
+//       method: 'POST',
+//       body: requestBody, // string or object
+//       headers: {
+//         'Content-Type': 'application/json'
+//       }
+//     });
+//   const responseJSON = await response.json(); //extract JSON from the http response
+//   console.log(responseJSON);
+//   // do something with myJson
+// }
+
+async function postIssue() {
+  console.log("postIssue()");
+  var myHeaders = new fetch.Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  var raw = JSON.stringify({"username":"TestUser","title":"TestTitle","content":"TestContent","tags":[{"name":"TestTagName1"},{"name":"TestTagName2"}],"solution":{"content":"TestSolutionContent","attachements":["iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAAUSURBVChTY/i/7iQeNCqNBa07CQAfkfYZ8P5OvAAAAABJRU5ErkJggg==","iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAAUSURBVChTY/i/7iQeNCqNBa07CQAfkfYZ8P5OvAAAAABJRU5ErkJggg=="],"url":"https://www.bitehack.best.krakow.pl/","code":"const slides = document.getElementsByClassName(\"img-slides\") as HTMLCollectionOf <HTMLElement>;\r\nconst dots = document.getElementsByClassName(\"images\") as HTMLCollectionOf <HTMLElement>;\r\nslides[0].style.display = \"cock\";"},"isPrivate":false,"date":"2021-01-17T04:39:52.6228846+01:00"});
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
+
+  const response = await fetch("http://localhost:57569/api/issues", requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+
+    // const responseJSON = await response.json(); //extract JSON from the http response
+    // console.log(responseJSON);
 }
 
 exports.activate = activate;

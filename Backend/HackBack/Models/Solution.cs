@@ -8,15 +8,17 @@ namespace HackBack.Models.Issue
         {
 
         }
-        public Solution(string content, List<byte[]> attachements, List<string> urls)
+        public Solution(string content, List<byte[]> attachements, string url, string code)
         {
             Content = content;
             Attachements = attachements;
-            Urls = urls;
+            Url = url;
+            Code = code;
         }
 
         public string Content { get; set; }
         public List<byte[]> Attachements { get; set; }
-        public List<string> Urls { get; set; }
+        public string Url { get; set; }
+        public string Code { get; set; }
     }
 }
