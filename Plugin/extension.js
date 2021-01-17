@@ -48,7 +48,23 @@ function activate(context) {
 
   panel.webview.html = getWebViewContent();
 
-  postIssue();
+  panel.webview.onDidReceiveMessage((message) => {
+    /* console.log("testUser");
+          console.log(message.title);
+          console.log(message.content);
+          console.log(message.tags);
+          console.log(message.code);
+          console.log(message.url);*/
+    postIssue(
+      "testUser",
+      message.title,
+      message.content,
+      message.tags,
+      message.code,
+      message.url
+    );
+    return;
+  }, context.subscriptions);
 
   const watchPath = vscode.workspace.workspaceFolders[0].uri.fsPath;
 
@@ -133,7 +149,7 @@ function activate(context) {
         changes.push(element);
       }
     });
-    panel.webview.postMessage({changes});
+    panel.webview.postMessage({ changes });
   }
 }
 function getWebViewContent() {
@@ -148,27 +164,48 @@ function getWebViewContent() {
 		<h1>Holiday Spirit Issue Tracker</h1>
 		<p id="tester">ss</p>
     
-    <form action="/action_page.php">
-      <label for="title">Titl:</label><br>
-      <input type="text" id="title" name="title" value="TestTitle"><br>
+    <form action="/action_page.php" onSubmit="sendMes()">
+      <label for="title">Title:</label><br>
+      <input type="text" id="title" name="title" value="TestTitle" style="width: 60%;background: transparent; color:white;border-right:black;border-bottom: 2px solid #9b9b9b;margin:5px"><br>
       <label for="content">Content:</label><br>
-      <input type="text" id="content" name="content" value="TestContent"><br><br>
+      <input type="text" id="content" name="content" value="TestContent" style="width: 60%;background: transparent; color:white;border-right:black;border-bottom: 2px solid #9b9b9b;margin:5px"><br><br>
       <label for="content">Tags:</label><br>
-      <input type="text" id="tags" name="tags" value="tag1, tag2"><br><br>
+      <input type="text" id="tags" name="tags" value="tag1, tag2" style="width: 60%;background: transparent; color:white;border-right:black;border-bottom: 2px solid #9b9b9b;margin:5px"><br><br>
       <label for="code">Code:</label><br>
-      <input type="text" id="code" name="code" value=""><br><br>
+      <input type="text" id="code" name="code" value="" style="width: 60%;background: transparent; color:white;border-right:black;border-bottom: 2px solid #9b9b9b;margin:5px"><br><br>
       <label for="url">Url:</label><br>
-      <input type="text" id="url" name="url" value="TestUrl"><br><br>
-      <input type="submit" value="Submit">
-    </form> 
+      <input type="text" id="url" name="url" value="TestUrl" style="width: 60%;background: transparent; color:white;border-right:black;border-bottom: 2px solid #9b9b9b;margin:5px"><br><br>
+      <input type="submit" value="Submit" style="background-color: #124d00; 
+      border: none;
+      color: white;
+      padding: 8px 16px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px; border-radius: 4px; text-allign:center;margin-left:25%;">
+    </form>
 
     <script>
 		const inputField = document.getElementById("code");
 		window.addEventListener('message', (event) => {
 		  const message = event.data;
 		  
-		  inputField.value = JSON.stringify(message);
-		});
+		 inputField.value += JSON.stringify(message);
+      
+    });
+      
+      function sendMes() {
+            const vscode = acquireVsCodeApi();
+            vscode.postMessage({
+              title: document.getElementById("title").value,
+              content: document.getElementById("content").value,
+              tags: document.getElementById("tags").value,
+              code: document.getElementById("code").value,
+              url: document.getElementById("url").value
+            });
+            console.log("Asdasda")
+      };
+    
     </script>
 
 	</body>
@@ -190,27 +227,46 @@ function getWebViewContent() {
 //   // do something with myJson
 // }
 
-async function postIssue() {
+async function postIssue(user, title, content, tags, code, url) {
   console.log("postIssue()");
   var myHeaders = new fetch.Headers();
   myHeaders.append("Content-Type", "application/json");
-
-  var raw = JSON.stringify({"username":"TestUser","title":"TestTitle","content":"TestContent","tags":[{"name":"TestTagName1"},{"name":"TestTagName2"}],"solution":{"content":"TestSolutionContent","attachements":["iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAAUSURBVChTY/i/7iQeNCqNBa07CQAfkfYZ8P5OvAAAAABJRU5ErkJggg==","iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAAUSURBVChTY/i/7iQeNCqNBa07CQAfkfYZ8P5OvAAAAABJRU5ErkJggg=="],"url":"https://www.bitehack.best.krakow.pl/","code":"const slides = document.getElementsByClassName(\"img-slides\") as HTMLCollectionOf <HTMLElement>;\r\nconst dots = document.getElementsByClassName(\"images\") as HTMLCollectionOf <HTMLElement>;\r\nslides[0].style.display = \"cock\";"},"isPrivate":false,"date":"2021-01-17T04:39:52.6228846+01:00"});
+  var d = new Date();
+  var raw = JSON.stringify({
+    username: user,
+    title: title,
+    content: content,
+    tags: [{ name: "TestTagName1" }, { name: "TestTagName2" }],
+    solution: {
+      content: "TestSolutionContent",
+      attachements: [
+        "iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAAUSURBVChTY/i/7iQeNCqNBa07CQAfkfYZ8P5OvAAAAABJRU5ErkJggg==",
+        "iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAAUSURBVChTY/i/7iQeNCqNBa07CQAfkfYZ8P5OvAAAAABJRU5ErkJggg==",
+      ],
+      url: url,
+      code: code,
+    },
+    isPrivate: false,
+    date: d,
+  });
 
   var requestOptions = {
-    method: 'POST',
+    method: "POST",
     headers: myHeaders,
     body: raw,
-    redirect: 'follow'
+    redirect: "follow",
   };
 
-  const response = await fetch("http://localhost:57569/api/issues", requestOptions)
-    .then(response => response.text())
-    .then(result => console.log(result))
-    .catch(error => console.log('error', error));
+  const response = await fetch(
+    "http://localhost:57569/api/issues",
+    requestOptions
+  )
+    .then((response) => response.text())
+    .then((result) => console.log(""))
+    .catch((error) => console.log("error", error));
 
-    // const responseJSON = await response.json(); //extract JSON from the http response
-    // console.log(responseJSON);
+  // const responseJSON = await response.json(); //extract JSON from the http response
+  // console.log(responseJSON);
 }
 
 exports.activate = activate;
