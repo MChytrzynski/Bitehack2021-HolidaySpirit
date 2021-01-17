@@ -23,21 +23,6 @@ export class ProblemComponent implements OnInit {
     aceEditor.setTheme('ace/theme/twilight');
   aceEditor.session.setMode('ace/mode/javascript');
   }
-  showSlides() {
-    let i;
-    const slides = document.getElementsByClassName("img-slides") as HTMLCollectionOf < HTMLElement > ;
-    const dots = document.getElementsByClassName("images") as HTMLCollectionOf < HTMLElement > ;
-    slides[0].style.display = "block";
-   }
-  openModal() {
-    document.getElementById('imgModal').style.display = "block";
-   }
-  closeModal() {
-    document.getElementById('imgModal').style.display = "none";
-   }
-   currentSlide() {
-    this.showSlides();
-   }
 
   ngOnInit(): void {
     this.route.params.subscribe(x=>this.problemService.getProblem(x.id).subscribe(y=>{this.dataLoaded(y)}));
