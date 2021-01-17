@@ -42,11 +42,12 @@ function activate(context) {
     }
   );
 
+  
 
   panel.webview.html = getWebViewContent();
 
   panel.webview.onDidReceiveMessage((message) => {
-    
+   
     postIssue(
       "testUser",
       message.title,
@@ -65,11 +66,10 @@ function activate(context) {
   let undispos = vscode.commands.registerCommand(
     "holiday-spirit.startWatch",
     function () {
-        fs.readdir(watchPath, function (err, files) {
+      fs.readdir(watchPath, function (err, files) {
         if (err) {
           return console.log("Unable to scan directory: " + err);
         }
-
         files.forEach(function (file) {
           if (file != "temp") {
             fs.copy(watchPath + "\\" + file, tempPath + "\\" + file, (err) => {
@@ -110,7 +110,6 @@ function activate(context) {
         return;
       }
 
-      
     })
   );
 
@@ -325,7 +324,6 @@ async function postIssue(user, title, content, tags, code, url) {
     .then((response) => response.text())
     .then((result) => console.log(""))
     .catch((error) => console.log("error", error));
-
 
 }
 
