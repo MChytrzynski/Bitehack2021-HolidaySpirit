@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'HackFront';
+  constructor(private router:Router){}
+  navigateToHome(){
+      this.router.navigateByUrl('/problems')
+  }
+  navigateToNewIssue(){
+    this.router.navigateByUrl('/newproblem')
+
+  }
+  navigateToProblems(){
+    this.router.navigateByUrl('/problems')
+
+  }
 }
