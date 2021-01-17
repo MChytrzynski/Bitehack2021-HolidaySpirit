@@ -74,5 +74,24 @@ namespace HackBack.Controllers
             else
                 return NotFound();
         }
+        [HttpGet]
+        [Route("test")]
+        public IActionResult TestGet()
+        {
+            _logger.LogInformation("IssuesController : TestGet()");
+            return new JsonResult(new IssueDTO(
+                "TestUser", "TestTitle", "TestContent",
+                new System.Collections.Generic.List<Tag>() { new Tag("TestTagName1"), new Tag("TestTagName2") },
+                new Solution(
+                    "TestSolutionContent",
+                    new System.Collections.Generic.List<byte[]>() {
+                        System.IO.File.ReadAllBytes("SampleData/sampleImg.png"),
+                        System.IO.File.ReadAllBytes("SampleData/sampleImg.png")
+                    },
+                    new System.Collections.Generic.List<string> { "https://www.bitehack.best.krakow.pl/", "https://www.pk.edu.pl/" },
+                    new System.Collections.Generic.List<string> { System.IO.File.ReadAllText("SampleData/sampleCode.js") , System.IO.File.ReadAllText("SampleData/sampleCode.js") }.ToArray()
+                ),
+                false, System.DateTime.Now));
+        }
     }
 }
