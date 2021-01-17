@@ -154,78 +154,155 @@ function activate(context) {
 }
 function getWebViewContent() {
   return `<!DOCTYPE html>
-	<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Document</title>
-	</head>
-	<body>
-		<h1>Holiday Spirit Issue Tracker</h1>
-		<p id="tester">ss</p>
-    
-    <form action="/action_page.php" onSubmit="sendMes()">
-      <label for="title">Title:</label><br>
-      <input type="text" id="title" name="title" value="TestTitle" style="width: 60%;background: transparent; color:white;border-right:black;border-bottom: 2px solid #9b9b9b;margin:5px"><br>
-      <label for="content">Content:</label><br>
-      <input type="text" id="content" name="content" value="TestContent" style="width: 60%;background: transparent; color:white;border-right:black;border-bottom: 2px solid #9b9b9b;margin:5px"><br><br>
-      <label for="content">Tags:</label><br>
-      <input type="text" id="tags" name="tags" value="tag1, tag2" style="width: 60%;background: transparent; color:white;border-right:black;border-bottom: 2px solid #9b9b9b;margin:5px"><br><br>
-      <label for="code">Code:</label><br>
-      <input type="text" id="code" name="code" value="" style="width: 60%;background: transparent; color:white;border-right:black;border-bottom: 2px solid #9b9b9b;margin:5px"><br><br>
-      <label for="url">Url:</label><br>
-      <input type="text" id="url" name="url" value="TestUrl" style="width: 60%;background: transparent; color:white;border-right:black;border-bottom: 2px solid #9b9b9b;margin:5px"><br><br>
-      <input type="submit" value="Submit" style="background-color: #124d00; 
-      border: none;
-      color: white;
-      padding: 8px 16px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px; border-radius: 4px; text-allign:center;margin-left:25%;">
-    </form>
-
-    <script>
-		const inputField = document.getElementById("code");
-		window.addEventListener('message', (event) => {
-		  const message = event.data;
-		  
-		 inputField.value += JSON.stringify(message);
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+    </head>
+    <body>
+      <h1>Buggy Issue Tracker</h1>
+  
+      <form action="/action_page.php" onSubmit="sendMes()">
+        <label for="title">Title:</label><br />
+        <input
+          type="text"
+          id="title"
+          name="title"
+          value="TestTitle"
+          style="
+            width: 60%;
+            background: transparent;
+            color: white;
+            border-right: black;
+            border-bottom: 2px solid #9b9b9b;
+            margin: 5px;
+          "
+        /><br />
+        <label for="content">Content:</label><br />
+        <input
+          type="text"
+          id="content"
+          name="content"
+          value="TestContent"
+          style="
+            width: 60%;
+            background: transparent;
+            color: white;
+            border-right: black;
+            border-bottom: 2px solid #9b9b9b;
+            margin: 5px;
+          "
+        /><br /><br />
+        <label for="content">Tags:</label><br />
+        <input
+          type="text"
+          id="tags"
+          name="tags"
+          value="tag1, tag2"
+          style="
+            width: 60%;
+            background: transparent;
+            color: white;
+            border-right: black;
+            border-bottom: 2px solid #9b9b9b;
+            margin: 5px;
+          "
+        /><br /><br />
+        <label for="code">Code:</label><br />
+        <input
+          type="text"
+          id="code"
+          name="code"
+          value=""
+          style="
+            width: 60%;
+            background: transparent;
+            color: white;
+            border-right: black;
+            border-bottom: 2px solid #9b9b9b;
+            margin: 5px;
+          "
+        /><br /><br />
+        <label for="url">Url:</label><br />
+        <input
+          type="text"
+          id="url"
+          name="url"
+          value="TestUrl"
+          style="
+            width: 60%;
+            background: transparent;
+            color: white;
+            border-right: black;
+            border-bottom: 2px solid #9b9b9b;
+            margin: 5px;
+          "
+        /><br /><br />
+        <input
+          type="submit"
+          value="Submit"
+          style="
+            background-color: #124d00;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 4px;
+            text-allign: center;
+            margin-left: 25%;
+          "
+        />
+      </form>
       
-    });
-      
-      const vscode = acquireVsCodeApi();
-      function sendMes() {
-            vscode.postMessage({
-              title: document.getElementById("title").value,
-              content: document.getElementById("content").value,
-              tags: document.getElementById("tags").value,
-              code: document.getElementById("code").value,
-              url: document.getElementById("url").value
-            });
-            console.log("Asdasda")
-      };
-    
-    </script>
+      <div style="width: 60%" id="issueTrack"></div>
 
-	</body>
-	</html>`;
+      <script>
+        const inputField = document.getElementById("code");
+        const textField = document.getElementById("issueTrack");
+        window.addEventListener("message", (event) => {
+          const message = event.data;
+          let x = JSON.stringify(message["changes"]);
+          if (x != "[]") {
+            for (let i = 0; i < message["changes"].length; i++) {
+              if (message["changes"][i]["removed"]) {
+                let z = JSON.stringify(message["changes"][i]["value"]);
+                if (z) {
+                textField.innerHTML += "<p style='color: white; background-color: rgba(209, 0, 0, 0.2) '>REMOVED: " + z + "<p>";
+              }
+                inputField.value += "removed: " + z+ "; ";
+              }
+              if (message["changes"][i]["added"]) {
+                let z = JSON.stringify(message["changes"][i]["value"]);
+                if (z) {
+                textField.innerHTML += "<p style='color: white; background-color: rgba(47, 122, 0, 0.2)'>ADDED: "+ z + "<p>";
+              }
+                inputField.value += "added: " + z + "; ";
+              }
+            }
+            console.log(x);
+          }
+        });
+  
+        const vscode = acquireVsCodeApi();
+        function sendMes() {
+          vscode.postMessage({
+            title: document.getElementById("title").value,
+            content: document.getElementById("content").value,
+            tags: document.getElementById("tags").value,
+            code: document.getElementById("code").value,
+            url: document.getElementById("url").value,
+          });
+          console.log("Asdasda");
+        }
+      </script>
+    </body>
+  </html>
+   `;
 }
-
-// async function postIssue() {
-//   console.log('postIssue():');
-//   const requestBody = ('{"username":"TestUser","title":"TestTitle","content":"TestContent","tags":[{"name":"TestTagName1"},{"name":"TestTagName2"}],"solution":{"content":"TestSolutionContent","attachements":["iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAAUSURBVChTY/i/7iQeNCqNBa07CQAfkfYZ8P5OvAAAAABJRU5ErkJggg==","iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAAUSURBVChTY/i/7iQeNCqNBa07CQAfkfYZ8P5OvAAAAABJRU5ErkJggg=="],"urls":["https://www.bitehack.best.krakow.pl/","https://www.pk.edu.pl/"],"code":["const slides = document.getElementsByClassName(\u0022img-slides\u0022) as HTMLCollectionOf \u003CHTMLElement\u003E;\r\nconst dots = document.getElementsByClassName(\u0022images\u0022) as HTMLCollectionOf \u003CHTMLElement\u003E;\r\nslides[0].style.display = \u0022blsad\u0022;","const slides = document.getElementsByClassName(\u0022img-slides\u0022) as HTMLCollectionOf \u003CHTMLElement\u003E;\r\nconst dots = document.getElementsByClassName(\u0022images\u0022) as HTMLCollectionOf \u003CHTMLElement\u003E;\r\nslides[0].style.display = \u0022blsad\u0022;"]},"isPrivate":false,"date":"2021-01-17T03:10:04.0832577+01:00"}');
-//   const response = await fetch('http://localhost:57569/api/issues', {
-//       method: 'POST',
-//       body: requestBody, // string or object
-//       headers: {
-//         'Content-Type': 'application/json'
-//       }
-//     });
-//   const responseJSON = await response.json(); //extract JSON from the http response
-//   console.log(responseJSON);
-//   // do something with myJson
-// }
 
 async function postIssue(user, title, content, tags, code, url) {
   console.log("postIssue()");
